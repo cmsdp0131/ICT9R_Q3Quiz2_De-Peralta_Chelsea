@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Ticketing Center</title>
+    <!-- Bootstrap CSS Link -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .btn-custom {
+            margin-top: 20px;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #f1f1f1;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1 class="text-center">Online Ticketing Center</h1>
+            <p class="lead text-center">Book your tickets for events, concerts, and more!</p>
+        </header>
+
+        <!-- Navigation Bar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Ticket Center</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Ticket Booking Form -->
+        <div class="form-group">
+            <label for="eventSelector">Choose an Event:</label>
+            <select class="form-control" id="eventSelector">
+                <option value="concert">Concert</option>
+                <option value="sports">Sports</option>
+                <option value="movie">Movie</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="ticketCount">Number of Tickets:</label>
+            <input type="number" class="form-control" id="ticketCount" placeholder="Enter the number of tickets">
+        </div>
+
+        <!-- Toggle Booking Info -->
+        <button class="btn btn-primary btn-custom" onclick="toggleBookingInfo()">Show Booking Info</button>
+        <div id="bookingInfo" style="display:none;">
+            <p class="mt-3">Review your booking details.</p>
+            <button class="btn btn-success" onclick="confirmBooking()">Confirm Booking</button>
+        </div>
+
+        <!-- Confirmation and Calculation Message -->
+        <div id="confirmationMessage"></div>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="footer">
+        <p>&copy; 2025 Ticketing Center | <a href="https://www.example.com" target="_blank">Visit Our Partner</a></p>
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script>
+        // Declare a variable to store ticket count
+        var ticketCount;
+
+        // Toggle the visibility of the booking info section
+        function toggleBookingInfo() {
+            var bookingInfo = document.getElementById('bookingInfo');
+            if (bookingInfo.style.display === "none") {
+                bookingInfo.style.display = "block";
+            } else {
+                bookingInfo.style.display = "none";
+            }
+        }
+
+        // Function to confirm booking and calculate the total price
+        function confirmBooking() {
+            // Get ticket count and event type values
+            ticketCount = document.getElementById('ticketCount').value;
+            var event = document.getElementById('eventSelector').value;
+            var ticketPrice;
+
+            // Set ticket price based on selected event
+            if (event === "concert") {
+                ticketPrice = 50;
+            } else if (event === "sports") {
+                ticketPrice = 30;
+            } else {
+                ticketPrice = 20;
+            }
+
+            // Calculate the total price
+            var totalPrice = ticketPrice * ticketCount;
+
+            // Display a confirmation message
+            document.getElementById('confirmationMessage').innerHTML = "<h4>Booking Confirmed!</h4><p>You have booked " + ticketCount + " tickets for a " + event + " event. The total price is $" + totalPrice + ".</p>";
+            
+            // Display alert to confirm the booking
+            window.alert("Booking Confirmed! Total price: $" + totalPrice);
+        }
+    </script>
+</body>
+</html>
+
+
